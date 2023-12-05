@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+
+  const [sound, setSound] = useState("");
+  const [color, setColor] = useState("#000000");
+
+  const submit = (e) => {
+    e.preventDefault();
+    alert(`${sound}'s sounds like ${color} color`);
+    setSound("");
+    setColor("#000000");
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <form onSubmit={submit}>
+      <input 
+        value={sound} 
+        type="text" 
+        placeholder='Sound to match ....'
+        onChange={(e) => setSound(e.target.value)}
+      />
+      <input 
+        value={color} 
+        type="color" 
+        onChange={(e) => setColor(e.target.value)}
+      />
+      <button type="submit">Submit</button>
+    </form>
   );
 }
 
