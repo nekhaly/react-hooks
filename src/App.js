@@ -1,23 +1,18 @@
-import logo from './logo.svg';
+import { useContext } from 'react';
 import './App.css';
+import { TreesContext } from '.';
 
 function App() {
+  const { trees } = useContext(TreesContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>My Trees!!</h1>
+      <ul>
+        { trees.map(tree => (
+          <li key={'tree_' + tree.id}>{ tree.name }</li>
+        ))}
+      </ul>
     </div>
   );
 }
